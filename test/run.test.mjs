@@ -192,3 +192,23 @@ test("errors read as plain instructions: 401, 402, 429, 400", async () => {
     /OddsRelay answered 400 unknown_sport: unknown sport\. Valid values include: soccer, tennis\. \(request id or_req_1\)/,
   );
 });
+
+test("every row fits the dataset schema: each field declared, and its type allows what the row holds", async () => {
+  const { matchedRows, rawRows, coverageRows } = await import("../dist/lib.js");
+  const schema = JSON.parse(readFileSync(new URL("../.actor/dataset_schema.json", import.meta.url), "utf8"));
+  const props = schema.fields.properties;
+  const rows = [
+    ...["standard", "each-way", "dutching"].flatMap((b) => matchedRows(b, fixture(b))),
+    ...rawRows(fixture("raw")),
+    ...coverageRows(fixture("coverage"), [], []),
+  ];
+  for (const row of rows) {
+    for (const [k, v] of Object.entries(row)) {
+      assert.ok(props[k], `field ${k} is not in the dataset schema`);
+      const kind = v === null ? "null" : typeof v;
+      assert.ok([props[k].type].flat().includes(kind), `field ${k} holds ${kind}, schema allows ${props[k].type}`);
+    }
+  }
+  // Apify validates with draft-07 JSON Schema: a null is allowed by a "null" type, never by "nullable".
+  for (const [k, p] of Object.entries(props)) assert.ok(!("nullable" in p) && p.type.includes("null"), k);
+});

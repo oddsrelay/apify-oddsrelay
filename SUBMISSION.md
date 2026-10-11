@@ -1,6 +1,6 @@
 # Publishing this Actor on Apify Store
 
-Everything Oscar needs to put the UK Bookmaker Odds API Actor on Apify Store. Claude built and tested it; Oscar
+Everything the owner needs to put the UK Bookmaker Odds API Actor on Apify Store. Claude built and tested it; the owner
 signs up, logs in, pushes and publishes. Nothing here is public until he does. Written 11 Oct 2026 from Apify's
 docs and terms as they read that day (sources at the end); re-read the Publishing tab on the day, forms change.
 
@@ -8,7 +8,7 @@ docs and terms as they read that day (sources at the end); re-read the Publishin
 
 Apify's Store publishing terms (last updated 15 Sep 2026) say:
 
-- **"Promote off-platform products or services"** (section 2.2.4, Specific Prohibitions, item i): unless Apify
+- **"Promote off-platform products or services"** (section 2.2.4 Restrictions, under Specific Prohibitions, item (i)): unless Apify
   agrees in writing, a publisher must not "directly or indirectly offer, link to, or promote any product or service
   outside of the Platform" in an Actor or its README or description.
 - **§10.4.1:** Apify may restrict an Actor that "contains, requires, or directs Users to any payment method other
@@ -24,8 +24,8 @@ address on status.apify.com), after signing up so you can give the username:
 > Hello, we run OddsRelay, an odds data API for UK and Irish bookmakers. We would like to publish a free Actor
 > (pay per usage, no Actor price) that reads our API with the user's own OddsRelay key and saves the rows to a
 > dataset. Its README says a key is needed and links to our sign-up and pricing pages, and without a key it lists
-> our coverage for free, so your daily test passes with the default input. Are you happy for us to publish it
-> under the "Promote off-platform products or services" rule (section 2.2.4) of the Store publishing terms?
+> our coverage for free, so your daily test passes with the prefilled input. Are you happy for us to publish it
+> under the "Promote off-platform products or services" rule (section 2.2.4, Restrictions) of the Store publishing terms?
 > Our Apify username is <username>. Thank you,
 > <your name>, OddsRelay
 
@@ -37,12 +37,12 @@ If Apify says no to the links: delete the two links in the README ("How to get U
 | Field | Text |
 |---|---|
 | Actor name (URL, cannot change later) | `uk-bookmaker-odds-api` (already in `.actor/actor.json`) |
-| Title | UK Bookmaker Odds API |
+| Title (40 to 50 characters; this is 46) | UK Bookmaker Odds API with Exchange Lay Prices (already in `.actor/actor.json`) |
 | Description (Store card, at most 300 characters; this is 195) | Pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets, Matchbook and BETDAQ lay prices, read from the OddsRelay API with your own key into a dataset you can export. |
-| SEO title (40 to 50 characters; this is 46) | UK Bookmaker Odds API with Exchange Lay Prices |
+| SEO title (40 to 50 characters; this is 48) | UK Betting Odds API: Bookmaker and Exchange Data |
 | SEO description (145 to 155 characters; this is 150) | Pre-match odds from UK and Irish bookmakers, bet365 included, beside Betfair, Smarkets, Matchbook and BETDAQ lay prices. Export to CSV, Excel or JSON. |
 | Categories (pick 3) | Sports, Developer tools, Integrations |
-| Icon | The OddsRelay avatar, the square 512 x 512 PNG used on the GitHub profile |
+| Icon | The OddsRelay avatar, 512 x 512 PNG: `~/Dev/oddsrelay/brand/social/avatar-512.png` |
 | README | Comes from `README.md` on push; nothing to paste |
 | Hide source files from Actor detail | Leave ticked (the default) until github.com/oddsrelay is visible again; then it can be unticked so the code is public |
 
@@ -52,7 +52,7 @@ a trademark owner. It appears only as data, in the description and README, with 
 ## 3. Monetisation
 
 Choose **Pay per usage** with no Actor price: users pay only Apify's own platform usage, and OddsRelay tokens come
-from their OddsRelay plan. This is a holding choice: Oscar decides monetisation later (pay per event is the other
+from their OddsRelay plan. This is a holding choice: the owner decides monetisation later (pay per event is the other
 model Apify offers; read its notice rules on the Monetization tab before switching, as users of a priced Actor
 are told of price changes in advance). A free Actor needs no Apify billing or identity check.
 
@@ -66,17 +66,24 @@ are told of price changes in advance). A free Actor needs no Apify billing or id
 
 ## 5. Test account notes (for Apify's checks)
 
-- **Daily automated test:** Apify runs every public Actor once a day with its default input and needs a Succeeded
-  run with a non-empty dataset within 5 minutes. The default input has no key, so the Actor lists coverage, which
-  takes seconds and needs no key and no tokens. No exclusion from the tests is needed.
+- **Daily automated test:** Apify runs every public Actor once a day with its prefilled input and needs a Succeeded
+  run with a non-empty dataset within 5 minutes. The prefilled input has no key (Sports `soccer`, Bookmakers
+  `bet365` and `william_hill`), so the Actor lists those coverage rows (7 on 11 Oct), which takes seconds and needs
+  no key and no tokens. No exclusion from the tests is needed.
 - **If Apify staff ask to see prices:** make a separate OddsRelay key on a test account with a small token budget
   and send it privately in that support thread. Never put a key in the listing, the README or a public issue.
 - **Local proof, 11 Oct 2026:** the tests passed on the contract's example replies; `apify validate-schema` passed;
   a local `apify run` without a key saved coverage rows; with a key, the Standard and Raw boards saved price rows
   within the token cap; an unfiltered request priced above the cap was refused before spending anything; a wrong
   sport key gave the API's list of valid keys. The key never reached the dataset, the log or the files.
+- **Independent re-test, 11 Oct 2026 (night):** a fresh clone and install passed the tests, `apify validate-schema`
+  (input, dataset and output schemas) and the gates; live runs saved Standard (349 rows, 6 tokens), Each-way
+  (35 rows, 250 tokens) and Raw (144 rows, 12 tokens) rows, every one valid against the dataset schema. Fixed then:
+  the dataset schema now allows empty values the way Apify's validation docs show (`"type": ["number", "null"]`,
+  not `nullable`, which Apify does not document; every row has some empty fields, so a validator that ignores
+  `nullable` would refuse every row), and `actor.json` uses the `input` and `output` keys the Apify tool reads.
 
-## 6. Oscar's steps, in order
+## 6. The owner's steps, in order
 
 1. **Apify account** (5 min): sign up at https://console.apify.com/sign-up with hello@oddsrelay.io. Pick the
    username `oddsrelay` if free. Settings, Account: display name "OddsRelay", website https://oddsrelay.io, the

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1 (unreleased)
+## 0.1
 
 - First version of the UK Bookmaker Odds API Actor.
 - Odds mode reads one OddsRelay board (Standard, Each-way, Extra place, Best odds guaranteed, Dutching, 2Up or Raw), filtered by sport, bookmaker and market, and saves one row per price.

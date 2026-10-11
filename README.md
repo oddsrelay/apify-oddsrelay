@@ -30,18 +30,21 @@ No key yet? Run it once without one: it lists **coverage**, which bookmakers car
 
 | Field | What it is |
 |---|---|
-| `product` | The board the row came from |
+| `product`, `region` | The board the row came from, and the region code of its prices (`uk`) |
+| `eventId`, `eventName` | OddsRelay's event id, the same on every board and run, and the event name where the board gives one |
 | `sport`, `sportTitle` | Sport or competition key, and its name |
 | `commenceTime` | Scheduled start, ISO 8601 in UTC |
 | `homeTeam`, `awayTeam`, `venue` | The teams or players, or the racecourse |
 | `market`, `outcome`, `point` | Market key (such as `h2h`), the selection, and the line where there is one |
-| `bookmaker`, `backPrice` | Bookmaker key and its decimal back price (Raw rows: `price`) |
+| `bookmaker`, `backPrice` | Bookmaker key and its decimal back price |
 | `places`, `placeFraction` | Each-way terms |
+| `dutchId` | Groups the back legs of one dutch, on the Dutching board |
 | `exchange`, `layPrice`, `layAvailable` | The exchange, its decimal lay price and the amount available at that price |
-| `placeLayPrice`, `placeLayAvailable` | The place lay, on each-way and extra place boards |
+| `placeLayPrice`, `placeLayAvailable`, `placeLayPlaces` | The place lay and the places in the exchange's place market, on each-way and extra place boards |
 | `backLink`, `layLink` | Links to the event at the bookmaker and the market at the exchange, where the board gives them |
+| `bookmakerTitle`, `price`, `lastUpdate`, `link` | Raw rows: the venue's name, its decimal price, when its market last moved, and a link to the event |
 | `processedAt` | When the board was built |
-| `status` | Coverage rows: `live`, or `interrupted_24h` when that bookmaker and sport were off the board in the last 24 hours |
+| `status`, `generatedAt` | Coverage rows: `live`, or `interrupted_24h` when that bookmaker and sport were off the board in the last 24 hours, and when the list was built |
 
 The dataset has four views: **Overview**, **Matched odds**, **Raw odds** and **Coverage**.
 

@@ -8,200 +8,167 @@
     "type": "object",
     "properties": {
       "product": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "The board the row came from: standard, each-way, extra-place, bog, dutching, 2up or raw.",
         "example": "standard"
       },
       "region": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Region code of the prices (uk).",
         "example": "uk"
       },
       "eventId": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "OddsRelay event id, stable across boards and runs.",
         "example": "or_evt_917dd44bce05"
       },
       "sport": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Sport or competition key. Coverage rows carry the base sport key.",
         "example": "soccer_epl"
       },
       "sportTitle": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Sport or competition name.",
         "example": "Premier League"
       },
       "commenceTime": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Scheduled start, ISO 8601 in UTC.",
         "example": "2026-10-17T14:00:00Z"
       },
       "homeTeam": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Home team or first player, where the event has one.",
         "example": "Example Home FC"
       },
       "awayTeam": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Away team or second player, where the event has one.",
         "example": "Example Away FC"
       },
       "eventName": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Event name, where the board gives one.",
         "example": "Example Home FC v Example Away FC"
       },
       "venue": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Racecourse, on racing boards.",
         "example": "Ayr"
       },
       "market": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Market key, such as h2h, totals, win or each_way.",
         "example": "h2h"
       },
       "outcome": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Selection name: a team, a player, a runner, Draw, Over or Under.",
         "example": "Example Home FC"
       },
       "point": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Line of a handicap or totals market, where there is one.",
         "example": 2.5
       },
       "bookmaker": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Bookmaker key (on the Raw board, an exchange key for exchange rows).",
         "example": "bet365"
       },
       "bookmakerTitle": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Bookmaker or exchange name. Raw rows only.",
         "example": "bet365"
       },
       "backPrice": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Decimal back price. Matched boards: the bookmaker's price. Raw: an exchange's back price.",
         "example": 4.0
       },
       "price": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Decimal price as the venue lists it. Raw rows only.",
         "example": 4.0
       },
       "places": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Places paid on an each-way offer.",
         "example": 3
       },
       "placeFraction": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Each-way place terms as a fraction of the win odds, such as 0.2 for one fifth.",
         "example": 0.2
       },
       "dutchId": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Groups the back legs of one dutch. Dutching board only.",
         "example": "b8d7916c"
       },
       "backLink": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Link to the event on the bookmaker's site, where the board gives one.",
         "example": "https://example.com/event/123"
       },
       "exchange": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Exchange key of the lay price on this row.",
         "example": "smarkets"
       },
       "layPrice": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Decimal lay price at that exchange (the win lay on each-way boards).",
         "example": 4.4
       },
       "layAvailable": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Amount available to lay at that price.",
         "example": 75.93
       },
       "layLink": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Link to the market on the exchange.",
         "example": "https://example.com/market/1.234"
       },
       "placeLayPrice": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Decimal place lay price at that exchange. Each-way and extra place boards.",
         "example": 1.9
       },
       "placeLayAvailable": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Amount available to lay at the place price.",
         "example": 40.0
       },
       "placeLayPlaces": {
-        "type": "number",
-        "nullable": true,
+        "type": ["number", "null"],
         "description": "Places in the exchange's place market.",
         "example": 3
       },
       "lastUpdate": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "When this venue's market last moved, ISO 8601. Raw rows only.",
         "example": "2026-10-17T09:41:12Z"
       },
       "link": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Link to the event at the venue, where the Raw board gives one.",
         "example": "https://example.com/event/123"
       },
       "processedAt": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "When the board was built, ISO 8601.",
         "example": "2026-10-17T09:41:20Z"
       },
       "status": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Coverage rows: live, or interrupted_24h when the pair has been off the board in the last 24 hours.",
         "example": "live"
       },
       "generatedAt": {
-        "type": "string",
-        "nullable": true,
+        "type": ["string", "null"],
         "description": "Coverage rows: when the coverage list was built, ISO 8601.",
         "example": "2026-10-17T09:40:00Z"
       }
