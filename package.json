@@ -1,0 +1,30 @@
+{
+  "name": "apify-oddsrelay",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Apify Actor that reads UK and Irish bookmaker odds from the OddsRelay API with your own key and saves them to a dataset.",
+  "homepage": "https://oddsrelay.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oddsrelay/apify-oddsrelay.git"
+  },
+  "license": "MIT",
+  "author": "OddsRelay <hello@oddsrelay.io> (https://oddsrelay.io)",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "test": "tsc && node --test test/run.test.mjs"
+  },
+  "dependencies": {
+    "apify": "3.7.2",
+    "oddsrelay": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "typescript": "6.0.3"
+  }
+}

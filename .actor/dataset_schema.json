@@ -1,0 +1,536 @@
+{
+  "$schema": "https://apify.com/schemas/v1/dataset.ide.json",
+  "actorSpecification": 1,
+  "title": "UK bookmaker odds",
+  "description": "Odds runs save one row per price (matched boards: per bookmaker back price and exchange lay). Coverage runs save one row per board, sport and bookmaker.",
+  "fields": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "product": {
+        "type": "string",
+        "nullable": true,
+        "description": "The board the row came from: standard, each-way, extra-place, bog, dutching, 2up or raw.",
+        "example": "standard"
+      },
+      "region": {
+        "type": "string",
+        "nullable": true,
+        "description": "Region code of the prices (uk).",
+        "example": "uk"
+      },
+      "eventId": {
+        "type": "string",
+        "nullable": true,
+        "description": "OddsRelay event id, stable across boards and runs.",
+        "example": "or_evt_917dd44bce05"
+      },
+      "sport": {
+        "type": "string",
+        "nullable": true,
+        "description": "Sport or competition key. Coverage rows carry the base sport key.",
+        "example": "soccer_epl"
+      },
+      "sportTitle": {
+        "type": "string",
+        "nullable": true,
+        "description": "Sport or competition name.",
+        "example": "Premier League"
+      },
+      "commenceTime": {
+        "type": "string",
+        "nullable": true,
+        "description": "Scheduled start, ISO 8601 in UTC.",
+        "example": "2026-10-17T14:00:00Z"
+      },
+      "homeTeam": {
+        "type": "string",
+        "nullable": true,
+        "description": "Home team or first player, where the event has one.",
+        "example": "Example Home FC"
+      },
+      "awayTeam": {
+        "type": "string",
+        "nullable": true,
+        "description": "Away team or second player, where the event has one.",
+        "example": "Example Away FC"
+      },
+      "eventName": {
+        "type": "string",
+        "nullable": true,
+        "description": "Event name, where the board gives one.",
+        "example": "Example Home FC v Example Away FC"
+      },
+      "venue": {
+        "type": "string",
+        "nullable": true,
+        "description": "Racecourse, on racing boards.",
+        "example": "Ayr"
+      },
+      "market": {
+        "type": "string",
+        "nullable": true,
+        "description": "Market key, such as h2h, totals, win or each_way.",
+        "example": "h2h"
+      },
+      "outcome": {
+        "type": "string",
+        "nullable": true,
+        "description": "Selection name: a team, a player, a runner, Draw, Over or Under.",
+        "example": "Example Home FC"
+      },
+      "point": {
+        "type": "number",
+        "nullable": true,
+        "description": "Line of a handicap or totals market, where there is one.",
+        "example": 2.5
+      },
+      "bookmaker": {
+        "type": "string",
+        "nullable": true,
+        "description": "Bookmaker key (on the Raw board, an exchange key for exchange rows).",
+        "example": "bet365"
+      },
+      "bookmakerTitle": {
+        "type": "string",
+        "nullable": true,
+        "description": "Bookmaker or exchange name. Raw rows only.",
+        "example": "bet365"
+      },
+      "backPrice": {
+        "type": "number",
+        "nullable": true,
+        "description": "Decimal back price. Matched boards: the bookmaker's price. Raw: an exchange's back price.",
+        "example": 4.0
+      },
+      "price": {
+        "type": "number",
+        "nullable": true,
+        "description": "Decimal price as the venue lists it. Raw rows only.",
+        "example": 4.0
+      },
+      "places": {
+        "type": "number",
+        "nullable": true,
+        "description": "Places paid on an each-way offer.",
+        "example": 3
+      },
+      "placeFraction": {
+        "type": "number",
+        "nullable": true,
+        "description": "Each-way place terms as a fraction of the win odds, such as 0.2 for one fifth.",
+        "example": 0.2
+      },
+      "dutchId": {
+        "type": "string",
+        "nullable": true,
+        "description": "Groups the back legs of one dutch. Dutching board only.",
+        "example": "b8d7916c"
+      },
+      "backLink": {
+        "type": "string",
+        "nullable": true,
+        "description": "Link to the event on the bookmaker's site, where the board gives one.",
+        "example": "https://example.com/event/123"
+      },
+      "exchange": {
+        "type": "string",
+        "nullable": true,
+        "description": "Exchange key of the lay price on this row.",
+        "example": "smarkets"
+      },
+      "layPrice": {
+        "type": "number",
+        "nullable": true,
+        "description": "Decimal lay price at that exchange (the win lay on each-way boards).",
+        "example": 4.4
+      },
+      "layAvailable": {
+        "type": "number",
+        "nullable": true,
+        "description": "Amount available to lay at that price.",
+        "example": 75.93
+      },
+      "layLink": {
+        "type": "string",
+        "nullable": true,
+        "description": "Link to the market on the exchange.",
+        "example": "https://example.com/market/1.234"
+      },
+      "placeLayPrice": {
+        "type": "number",
+        "nullable": true,
+        "description": "Decimal place lay price at that exchange. Each-way and extra place boards.",
+        "example": 1.9
+      },
+      "placeLayAvailable": {
+        "type": "number",
+        "nullable": true,
+        "description": "Amount available to lay at the place price.",
+        "example": 40.0
+      },
+      "placeLayPlaces": {
+        "type": "number",
+        "nullable": true,
+        "description": "Places in the exchange's place market.",
+        "example": 3
+      },
+      "lastUpdate": {
+        "type": "string",
+        "nullable": true,
+        "description": "When this venue's market last moved, ISO 8601. Raw rows only.",
+        "example": "2026-10-17T09:41:12Z"
+      },
+      "link": {
+        "type": "string",
+        "nullable": true,
+        "description": "Link to the event at the venue, where the Raw board gives one.",
+        "example": "https://example.com/event/123"
+      },
+      "processedAt": {
+        "type": "string",
+        "nullable": true,
+        "description": "When the board was built, ISO 8601.",
+        "example": "2026-10-17T09:41:20Z"
+      },
+      "status": {
+        "type": "string",
+        "nullable": true,
+        "description": "Coverage rows: live, or interrupted_24h when the pair has been off the board in the last 24 hours.",
+        "example": "live"
+      },
+      "generatedAt": {
+        "type": "string",
+        "nullable": true,
+        "description": "Coverage rows: when the coverage list was built, ISO 8601.",
+        "example": "2026-10-17T09:40:00Z"
+      }
+    },
+    "required": [],
+    "additionalProperties": true
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "description": "The main columns of every row, whichever mode ran.",
+      "transformation": {
+        "fields": [
+          "product",
+          "sport",
+          "commenceTime",
+          "homeTeam",
+          "awayTeam",
+          "market",
+          "outcome",
+          "bookmaker",
+          "backPrice",
+          "exchange",
+          "layPrice",
+          "status"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "product": {
+            "label": "Board",
+            "format": "text"
+          },
+          "sport": {
+            "label": "Sport",
+            "format": "text"
+          },
+          "commenceTime": {
+            "label": "Starts",
+            "format": "date"
+          },
+          "homeTeam": {
+            "label": "Home",
+            "format": "text"
+          },
+          "awayTeam": {
+            "label": "Away",
+            "format": "text"
+          },
+          "market": {
+            "label": "Market",
+            "format": "text"
+          },
+          "outcome": {
+            "label": "Selection",
+            "format": "text"
+          },
+          "bookmaker": {
+            "label": "Bookmaker",
+            "format": "text"
+          },
+          "backPrice": {
+            "label": "Back",
+            "format": "number"
+          },
+          "exchange": {
+            "label": "Exchange",
+            "format": "text"
+          },
+          "layPrice": {
+            "label": "Lay",
+            "format": "number"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          }
+        }
+      }
+    },
+    "matched": {
+      "title": "Matched odds",
+      "description": "Back prices beside exchange lay prices, from the six matched boards.",
+      "transformation": {
+        "fields": [
+          "product",
+          "sportTitle",
+          "commenceTime",
+          "homeTeam",
+          "awayTeam",
+          "eventName",
+          "venue",
+          "market",
+          "outcome",
+          "point",
+          "bookmaker",
+          "backPrice",
+          "places",
+          "placeFraction",
+          "dutchId",
+          "exchange",
+          "layPrice",
+          "layAvailable",
+          "placeLayPrice",
+          "placeLayAvailable",
+          "backLink",
+          "layLink"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "product": {
+            "label": "Board",
+            "format": "text"
+          },
+          "sportTitle": {
+            "label": "Competition",
+            "format": "text"
+          },
+          "commenceTime": {
+            "label": "Starts",
+            "format": "date"
+          },
+          "homeTeam": {
+            "label": "Home",
+            "format": "text"
+          },
+          "awayTeam": {
+            "label": "Away",
+            "format": "text"
+          },
+          "eventName": {
+            "label": "Event",
+            "format": "text"
+          },
+          "venue": {
+            "label": "Venue",
+            "format": "text"
+          },
+          "market": {
+            "label": "Market",
+            "format": "text"
+          },
+          "outcome": {
+            "label": "Selection",
+            "format": "text"
+          },
+          "point": {
+            "label": "Line",
+            "format": "number"
+          },
+          "bookmaker": {
+            "label": "Bookmaker",
+            "format": "text"
+          },
+          "backPrice": {
+            "label": "Back",
+            "format": "number"
+          },
+          "places": {
+            "label": "Places",
+            "format": "number"
+          },
+          "placeFraction": {
+            "label": "Place terms",
+            "format": "number"
+          },
+          "dutchId": {
+            "label": "Dutch id",
+            "format": "text"
+          },
+          "exchange": {
+            "label": "Exchange",
+            "format": "text"
+          },
+          "layPrice": {
+            "label": "Lay",
+            "format": "number"
+          },
+          "layAvailable": {
+            "label": "Available",
+            "format": "number"
+          },
+          "placeLayPrice": {
+            "label": "Place lay",
+            "format": "number"
+          },
+          "placeLayAvailable": {
+            "label": "Place available",
+            "format": "number"
+          },
+          "backLink": {
+            "label": "Bookmaker link",
+            "format": "link"
+          },
+          "layLink": {
+            "label": "Exchange link",
+            "format": "link"
+          }
+        }
+      }
+    },
+    "raw": {
+      "title": "Raw odds",
+      "description": "Every venue's prices by event, from the Raw board.",
+      "transformation": {
+        "fields": [
+          "sportTitle",
+          "commenceTime",
+          "homeTeam",
+          "awayTeam",
+          "market",
+          "outcome",
+          "bookmaker",
+          "bookmakerTitle",
+          "price",
+          "backPrice",
+          "layPrice",
+          "layAvailable",
+          "lastUpdate",
+          "link"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "sportTitle": {
+            "label": "Competition",
+            "format": "text"
+          },
+          "commenceTime": {
+            "label": "Starts",
+            "format": "date"
+          },
+          "homeTeam": {
+            "label": "Home",
+            "format": "text"
+          },
+          "awayTeam": {
+            "label": "Away",
+            "format": "text"
+          },
+          "market": {
+            "label": "Market",
+            "format": "text"
+          },
+          "outcome": {
+            "label": "Selection",
+            "format": "text"
+          },
+          "bookmaker": {
+            "label": "Bookmaker",
+            "format": "text"
+          },
+          "bookmakerTitle": {
+            "label": "Venue name",
+            "format": "text"
+          },
+          "price": {
+            "label": "Price",
+            "format": "number"
+          },
+          "backPrice": {
+            "label": "Back",
+            "format": "number"
+          },
+          "layPrice": {
+            "label": "Lay",
+            "format": "number"
+          },
+          "layAvailable": {
+            "label": "Available",
+            "format": "number"
+          },
+          "lastUpdate": {
+            "label": "Last moved",
+            "format": "date"
+          },
+          "link": {
+            "label": "Link",
+            "format": "link"
+          }
+        }
+      }
+    },
+    "coverage": {
+      "title": "Coverage",
+      "description": "Which bookmakers carry which sports on each board.",
+      "transformation": {
+        "fields": [
+          "product",
+          "sport",
+          "bookmaker",
+          "status",
+          "region",
+          "generatedAt"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "product": {
+            "label": "Board",
+            "format": "text"
+          },
+          "sport": {
+            "label": "Sport",
+            "format": "text"
+          },
+          "bookmaker": {
+            "label": "Bookmaker",
+            "format": "text"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          },
+          "region": {
+            "label": "Region",
+            "format": "text"
+          },
+          "generatedAt": {
+            "label": "Listed at",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}

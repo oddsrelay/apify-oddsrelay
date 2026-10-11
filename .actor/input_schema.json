@@ -1,0 +1,87 @@
+{
+  "$schema": "https://apify.com/schemas/v1/input.ide.json",
+  "title": "UK bookmaker odds from the OddsRelay API",
+  "description": "Paste your OddsRelay API key, pick a board and narrow it to the sports and bookmakers you need. Without a key the run lists coverage instead: which bookmakers carry which sports, at no cost.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "apiKey": {
+      "title": "OddsRelay API key",
+      "type": "string",
+      "editor": "textfield",
+      "isSecret": true,
+      "description": "Your own key from your OddsRelay account. Apify stores it encrypted; the Actor sends it only to api.oddsrelay.io, in the Authorization header, and never logs it or saves it to the dataset. Leave it empty to list coverage, which needs no key."
+    },
+    "mode": {
+      "title": "What to fetch",
+      "type": "string",
+      "editor": "select",
+      "enum": ["odds", "coverage"],
+      "enumTitles": ["Odds: prices from the board below (needs your key, spends tokens)", "Coverage: which bookmakers carry which sports (no key, no tokens)"],
+      "default": "odds",
+      "description": "Odds saves prices from the board you pick. Coverage saves one row per board, sport and bookmaker, so you can see what is on offer before you spend anything."
+    },
+    "board": {
+      "title": "Board",
+      "type": "string",
+      "editor": "select",
+      "enum": ["standard", "each-way", "extra-place", "bog", "dutching", "2up", "raw"],
+      "enumTitles": [
+        "Standard: bookmaker back prices beside exchange lay prices",
+        "Each-way: each-way terms beside win and place lays",
+        "Extra place: races paying more places than the exchange place market",
+        "Best odds guaranteed (BOG): race win prices beside the win lay",
+        "Dutching: back prices covering every outcome, grouped by dutchId",
+        "2Up: football prices beside the match odds lay",
+        "Raw: every bookmaker and exchange price, by event"
+      ],
+      "default": "standard",
+      "description": "Which OddsRelay board to read in Odds mode. The README explains each one."
+    },
+    "sports": {
+      "title": "Sports",
+      "type": "array",
+      "editor": "stringList",
+      "sectionCaption": "Filters",
+      "sectionDescription": "Narrow filters cost fewer tokens. Leave a list empty to take everything on the board.",
+      "description": "Sport keys such as soccer, horse_racing or tennis. A competition key, as the OddsRelay docs list them, narrows it further. Up to 20.",
+      "placeholderValue": "soccer",
+      "prefill": ["soccer"],
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9_.-]+$" }
+    },
+    "bookmakers": {
+      "title": "Bookmakers",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Bookmaker keys in lowercase, such as bet365, william_hill or ladbrokes. On the Raw and Dutching boards exchange keys work here too. Up to 40. Run Coverage to see every key.",
+      "placeholderValue": "bet365",
+      "prefill": ["bet365", "william_hill"],
+      "maxItems": 40,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9_.-]+$" }
+    },
+    "markets": {
+      "title": "Markets",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Market keys such as h2h or totals. Leave empty for every market on the board. Up to 20. Odds mode only.",
+      "placeholderValue": "h2h",
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9_.-]+$" }
+    },
+    "maxTokens": {
+      "title": "Most tokens this run may spend",
+      "type": "integer",
+      "editor": "number",
+      "sectionCaption": "Spending limit",
+      "description": "Every call is priced first, which costs nothing. The run stops before any call that would take its total above this number, so it never spends more. Raw pages are priced one by one.",
+      "default": 500,
+      "minimum": 0,
+      "unit": "tokens"
+    }
+  },
+  "additionalProperties": false
+}
