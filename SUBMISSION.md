@@ -2,7 +2,7 @@
 
 Everything the owner needs to put the UK Bookmaker Odds API Actor on Apify Store. Claude built and tested it; the owner
 signs up, logs in, pushes and publishes. Nothing here is public until he does. Written 11 Oct 2026 from Apify's
-docs and terms as they read that day (sources at the end); re-read the Publishing tab on the day, forms change.
+docs and terms as they read that day (sources at the end), section 1 updated 16 Oct 2026; re-read the Publishing tab on the day, forms change.
 
 ## 1. Read this first: two Apify rules that touch this Actor
 
@@ -14,23 +14,23 @@ Apify's Store publishing terms (last updated 15 Sep 2026) say:
 - **§10.4.1:** Apify may restrict an Actor that "contains, requires, or directs Users to any payment method other
   than the Apify payment gateway".
 
-This Actor needs the user's own OddsRelay key, and its README links to the OddsRelay sign-up and pricing pages. The
-terms are plain, so the safe path is to **ask Apify for written agreement before publishing**. Nothing in the Actor
-takes payment, and it charges nothing through Apify. Send this from hello@oddsrelay.io to support@apify.com (the
-address on status.apify.com), after signing up so you can give the username:
+**Where it stands (16 Oct 2026):** Apify support replied on 14 Oct 2026 that they cannot confirm the rule, but
+that if we publish, the Actor must clearly explain three things. The owner's decision (16 Oct 2026): publish
+**without sign-up or pricing links**. The Store version therefore:
 
-> Subject: Store Actor that is a client for our own API (written OK under the off-platform promotion rule)
->
-> Hello, we run OddsRelay, an odds data API for UK and Irish bookmakers. We would like to publish a free Actor
-> (pay per usage, no Actor price) that reads our API with the user's own OddsRelay key and saves the rows to a
-> dataset. Its README says a key is needed and links to our sign-up and pricing pages, and without a key it lists
-> our coverage for free, so your daily test passes with the prefilled input. Are you happy for us to publish it
-> under the "Promote off-platform products or services" rule (section 2.2.4, Restrictions) of the Store publishing terms?
-> Our Apify username is <username>. Thank you,
-> <your name>, OddsRelay
+- has no link to the OddsRelay sign-up page, the pricing page or the homepage ("OddsRelay" is plain text); step 1
+  of "How to get UK bookmaker odds data" says an OddsRelay account and key are needed, with no link;
+- keeps two support links only: the API documentation (oddsrelay.io/docs) and hello@oddsrelay.io;
+- says these three things in "Before you start", near the top of the README:
+  1. users must provide their own OddsRelay API key (Coverage mode works without one);
+  2. using OddsRelay may involve separate costs: it is a separate service with its own plans, billed by OddsRelay,
+     not by Apify; Free covers a trial only;
+  3. how the key is used and stored: it is entered in a secret input field (`isSecret: true` in
+     `.actor/input_schema.json`) that Apify stores encrypted; the Actor sends it only to api.oddsrelay.io in the
+     Authorization header; it is never logged or written to the dataset.
 
-If Apify says no to the links: delete the two links in the README ("How to get UK bookmaker odds data" step 1 and
-"How much does it cost?"), keep the sentence that a key from oddsrelay.io is needed, and ask Claude to re-gate it.
+Nothing in the Actor takes payment, and it charges nothing through Apify. If Apify asks for changes after
+publishing, answer within 3 business days (§8.2) and ask Claude to re-gate the README.
 
 ## 2. The listing (Publication tab, Display information)
 
@@ -47,7 +47,7 @@ If Apify says no to the links: delete the two links in the README ("How to get U
 | Hide source files from Actor detail | Leave ticked (the default) until github.com/oddsrelay is visible again; then it can be unticked so the code is public |
 
 Never put "bet365" in the title or the SEO title: §2.2.1 asks listings to avoid any suggestion of affiliation with
-a trademark owner. It appears only as data, in the description and README, with the "not affiliated" line in the FAQ.
+a trademark owner. It appears once in the description and once in the README (its opening line), with the "not affiliated" line in the FAQ.
 
 ## 3. Monetisation
 
@@ -88,14 +88,14 @@ are told of price changes in advance). A free Actor needs no Apify billing or id
 1. **Apify account** (5 min): sign up at https://console.apify.com/sign-up with hello@oddsrelay.io. Pick the
    username `oddsrelay` if free. Settings, Account: display name "OddsRelay", website https://oddsrelay.io, the
    avatar above. No personal name.
-2. **Ask Apify** (3 min, then wait for the reply): send the email in section 1.
+2. **Ask Apify**: done. Support replied on 14 Oct 2026; the README now carries what they asked for (section 1).
 3. **Command-line tool** (3 min), in your own terminal:
    `npm install -g apify-cli@1.10.0`, then `apify login` (it opens the browser; you sign in, Claude never sees it).
 4. **Push** (5 min, most of it Apify building the image):
    `cd ~/Dev/oddsrelay-oss/apify-oddsrelay && apify push`
 5. **Try it** (3 min): in Apify Console, open the Actor, run it once with no key (coverage rows appear), then once
    with your own key, Board Standard, Sports `soccer`, Bookmakers `bet365`.
-6. **Publish** (10 min), only after Apify's yes to section 1: Publication tab, fill section 2, 3 and 4, mark each
+6. **Publish** (10 min), as decided on 16 Oct 2026 (section 1): Publication tab, fill section 2, 3 and 4, mark each
    section complete, "Publish on Store". Then search Apify Store for "UK Bookmaker Odds API" to check the page.
 7. **GitHub, later** (2 min, only once github.com/oddsrelay answers again): create and push the repo as
    the other OddsRelay repos were, with the description

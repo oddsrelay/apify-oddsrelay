@@ -1,8 +1,14 @@
 **UK Bookmaker Odds API** gives you **pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets, Matchbook and BETDAQ lay prices**, as a table you can download as CSV, Excel or JSON, or read through the Apify API.
 
-It is an **API client** for the [OddsRelay](https://oddsrelay.io) odds API. Each run sends your request to `api.oddsrelay.io` with **your own OddsRelay API key** and saves the reply as rows in the run's dataset. It talks to no other site.
+It is an **API client** for the OddsRelay odds API. Each run sends your request to `api.oddsrelay.io` with **your own OddsRelay API key** and saves the reply as rows in the run's dataset. It talks to no other site.
 
 No key yet? Run it once without one: it lists **coverage**, which bookmakers carry which sports on each board, at no cost.
+
+## Before you start
+
+- **You need your own OddsRelay API key** to get prices. Coverage mode works without one.
+- **Using OddsRelay may involve separate costs.** It is a separate service with its own plans, billed by OddsRelay, not by Apify. Its Free plan covers a trial only.
+- **How your key is used and stored:** you enter it in a secret input field, which Apify stores encrypted. The Actor sends it only to `api.oddsrelay.io`, in the `Authorization` header. It is never logged or written to the dataset.
 
 ## What does UK Bookmaker Odds API do?
 
@@ -24,7 +30,7 @@ No key yet? Run it once without one: it lists **coverage**, which bookmakers car
 | **2Up** | Football prices from bookmakers' 2Up markets, beside the exchange match odds lay. |
 | **Raw** | Every bookmaker's and exchange's prices by event, as each lists them, across many markets. |
 
-**bet365 is on every OddsRelay plan.** To see every bookmaker and sport key, run the Actor in **Coverage** mode.
+To see every bookmaker and sport key, run the Actor in **Coverage** mode.
 
 ## What data does it return?
 
@@ -50,10 +56,10 @@ The dataset has four views: **Overview**, **Matched odds**, **Raw odds** and **C
 
 ## How to get UK bookmaker odds data
 
-1. Create an OddsRelay account at [app.oddsrelay.io/signup](https://app.oddsrelay.io/signup) and copy your API key from it.
+1. You need an OddsRelay account and its API key. Copy the key from your account.
 2. Open this Actor, paste the key into **OddsRelay API key**, and leave **What to fetch** on **Odds**.
 3. Pick a **Board**, such as Standard.
-4. Add the **Sports** and **Bookmakers** you want, for example `soccer` and `bet365`. Narrow filters cost fewer tokens.
+4. Add the **Sports** and **Bookmakers** you want, for example `soccer` and `william_hill`. Narrow filters cost fewer tokens.
 5. Set **Most tokens this run may spend**, then click **Start**.
 6. Open the **Output** tab, choose a view, and download the rows as CSV, Excel or JSON.
 
@@ -65,7 +71,7 @@ Want fresh prices every morning? Save the input as a **task** and give it a **sc
 
 **The odds come from your OddsRelay plan**, which spends tokens per call. Before each call the Actor asks OddsRelay what it will cost, which spends nothing, and it never starts a call that would take the run past your limit. Coverage runs need no key and spend no tokens.
 
-Free gives you 50,000 tokens for 14 days from sign-up, with no card, then no tokens until you choose a plan, on the same key. Plans are on the [OddsRelay pricing page](https://oddsrelay.io/pricing).
+Free gives you 50,000 tokens for 14 days from sign-up, with no card, then no tokens until you choose a plan, on the same key. OddsRelay bills its plans itself, not through Apify.
 
 ## Input
 
@@ -77,7 +83,7 @@ See the **Input** tab for every field. An example:
   "mode": "odds",
   "board": "standard",
   "sports": ["soccer"],
-  "bookmakers": ["bet365", "william_hill"],
+  "bookmakers": ["william_hill", "ladbrokes"],
   "markets": ["h2h"],
   "maxTokens": 500
 }
@@ -142,7 +148,7 @@ From the OddsRelay API. This Actor is a client for it: it sends your request to 
 
 ### Which bookmakers and regions are covered?
 
-UK and Irish bookmakers, bet365 included, with Betfair, Smarkets, Matchbook and BETDAQ lay prices. Run Coverage for the current list of bookmaker and sport keys.
+UK and Irish bookmakers, with Betfair, Smarkets, Matchbook and BETDAQ lay prices. Run Coverage for the current list of bookmaker and sport keys.
 
 ### Why did my run stop early?
 
@@ -161,7 +167,7 @@ No. OddsRelay supplies odds data to businesses and developers: price comparison 
 
 ### Is OddsRelay linked to the bookmakers?
 
-OddsRelay is not affiliated with or endorsed by bet365, or by any other bookmaker or exchange named here.
+OddsRelay is not affiliated with or endorsed by any bookmaker or exchange named here.
 
 ### Where can I get help?
 
