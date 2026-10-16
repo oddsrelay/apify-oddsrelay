@@ -2,7 +2,7 @@
 
 It is an **API client** for the OddsRelay odds API. Each run sends your request to `api.oddsrelay.io` with **your own OddsRelay API key** and saves the reply as rows in the run's dataset. It talks to no other site.
 
-No key yet? Run it once without one: it lists **coverage**, which bookmakers carry which sports on each board, at no cost.
+No key yet? Run it once without one: it lists **coverage**, which bookmakers carry which sports on each board, spending no OddsRelay tokens.
 
 ## Before you start
 
@@ -15,7 +15,7 @@ No key yet? Run it once without one: it lists **coverage**, which bookmakers car
 - Saves **bookmaker back prices beside exchange lay prices**, one row per price, from the board you pick.
 - Covers **football, horse racing, tennis and the other sports** on the OddsRelay boards, for UK and Irish bookmakers.
 - Filters by **sport, bookmaker and market**, so you take only what you need.
-- **Prices every call first, at no cost**, and stops before it would spend more tokens than your limit.
+- **Prices every call first, spending no tokens**, and stops before it would spend more tokens than your limit.
 - Runs on a **schedule**, from the **Apify API**, or through **Apify integrations** such as Make, Zapier and webhooks, like any Actor.
 
 ## Which odds boards can I get?
@@ -171,4 +171,4 @@ OddsRelay is not affiliated with or endorsed by any bookmaker or exchange named 
 
 ### Where can I get help?
 
-Open an issue on the **Issues** tab, or email [hello@oddsrelay.io](mailto:hello@oddsrelay.io). The full API documentation is at [oddsrelay.io/docs](https://oddsrelay.io/docs).
+Open an issue on the **Issues** tab, or email [hello@oddsrelay.io](mailto:hello@oddsrelay.io).

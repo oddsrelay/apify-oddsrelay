@@ -1,7 +1,7 @@
 {
   "$schema": "https://apify.com/schemas/v1/input.ide.json",
   "title": "UK bookmaker odds from the OddsRelay API",
-  "description": "Paste your OddsRelay API key, pick a board and narrow it to the sports and bookmakers you need. Without a key the run lists coverage instead: which bookmakers carry which sports, at no cost.",
+  "description": "Paste your OddsRelay API key, pick a board and narrow it to the sports and bookmakers you need. Without a key the run lists coverage instead: which bookmakers carry which sports, spending no OddsRelay tokens.",
   "type": "object",
   "schemaVersion": 1,
   "properties": {

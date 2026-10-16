@@ -20,7 +20,7 @@ that if we publish, the Actor must clearly explain three things. The owner's dec
 
 - has no link to the OddsRelay sign-up page, the pricing page or the homepage ("OddsRelay" is plain text); step 1
   of "How to get UK bookmaker odds data" says an OddsRelay account and key are needed, with no link;
-- keeps two support links only: the API documentation (oddsrelay.io/docs) and hello@oddsrelay.io;
+- keeps one support contact only, hello@oddsrelay.io (the docs link went too: oddsrelay.io/docs carries sign-up and pricing links, and clause 2.2.4.2(i) bans linking "directly or indirectly");
 - says these three things in "Before you start", near the top of the README:
   1. users must provide their own OddsRelay API key (Coverage mode works without one);
   2. using OddsRelay may involve separate costs: it is a separate service with its own plans, billed by OddsRelay,
