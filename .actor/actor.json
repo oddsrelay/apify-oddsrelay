@@ -3,7 +3,7 @@
   "actorSpecification": 1,
   "name": "uk-bookmaker-odds-api",
   "title": "UK Bookmaker Odds API with Exchange Lay Prices",
-  "description": "Pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets, Matchbook and BETDAQ lay prices, read from the OddsRelay API with your own key into a dataset you can export.",
+  "description": "Pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets and Matchbook lay prices, read from the OddsRelay API with your own key into a dataset you can export.",
   "version": "0.1",
   "buildTag": "latest",
   "meta": {

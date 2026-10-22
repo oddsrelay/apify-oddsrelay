@@ -38,9 +38,9 @@ publishing, answer within 3 business days (§8.2) and ask Claude to re-gate the 
 |---|---|
 | Actor name (URL, cannot change later) | `uk-bookmaker-odds-api` (already in `.actor/actor.json`) |
 | Title (40 to 50 characters; this is 46) | UK Bookmaker Odds API with Exchange Lay Prices (already in `.actor/actor.json`) |
-| Description (Store card, at most 300 characters; this is 195) | Pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets, Matchbook and BETDAQ lay prices, read from the OddsRelay API with your own key into a dataset you can export. |
+| Description (Store card, at most 300 characters; this is 187) | Pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets and Matchbook lay prices, read from the OddsRelay API with your own key into a dataset you can export. |
 | SEO title (40 to 50 characters; this is 48) | UK Betting Odds API: Bookmaker and Exchange Data |
-| SEO description (145 to 155 characters; this is 150) | Pre-match odds from UK and Irish bookmakers, bet365 included, beside Betfair, Smarkets, Matchbook and BETDAQ lay prices. Export to CSV, Excel or JSON. |
+| SEO description (145 to 155 characters; this is 151) | Pre-match odds from UK and Irish bookmakers, bet365 included, beside Betfair, Smarkets and Matchbook exchange lay prices. Export to CSV, Excel or JSON. |
 | Categories (pick 3) | Sports, Developer tools, Integrations |
 | Icon | The OddsRelay avatar, 512 x 512 PNG: `~/Dev/oddsrelay/brand/social/avatar-512.png` |
 | README | Comes from `README.md` on push; nothing to paste |

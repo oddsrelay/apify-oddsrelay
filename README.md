@@ -1,4 +1,4 @@
-**UK Bookmaker Odds API** gives you **pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets, Matchbook and BETDAQ lay prices**, as a table you can download as CSV, Excel or JSON, or read through the Apify API.
+**UK Bookmaker Odds API** gives you **pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets and Matchbook lay prices**, as a table you can download as CSV, Excel or JSON, or read through the Apify API.
 
 It is an **API client** for the OddsRelay odds API. Each run sends your request to `api.oddsrelay.io` with **your own OddsRelay API key** and saves the reply as rows in the run's dataset. It talks to no other site.
 
@@ -148,7 +148,7 @@ From the OddsRelay API. This Actor is a client for it: it sends your request to 
 
 ### Which bookmakers and regions are covered?
 
-UK and Irish bookmakers, with Betfair, Smarkets, Matchbook and BETDAQ lay prices. Run Coverage for the current list of bookmaker and sport keys.
+UK and Irish bookmakers, with Betfair, Smarkets and Matchbook lay prices. Run Coverage for the current list of bookmaker and sport keys.
 
 ### Why did my run stop early?
 
