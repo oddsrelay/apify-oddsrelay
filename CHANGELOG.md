@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2 (2026-11-18)
 
 - New **Region** input. Left empty, the run reads the UK & Ireland as before. The Raw board reads any region the
   OddsRelay API serves, or several international codes as one board (`us,global`); Coverage lists the region
