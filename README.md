@@ -1,4 +1,4 @@
-**UK Bookmaker Odds API** gives you **pre-match odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets and Matchbook lay prices**, as a table you can download as CSV, Excel or JSON, or read through the Apify API.
+**UK Bookmaker Odds API** gives you **odds from UK and Irish bookmakers, bet365 included, with Betfair, Smarkets and Matchbook lay prices**, and raw bookmaker odds from 20 more regions, as a table you can download as CSV, Excel or JSON, or read through the Apify API.
 
 It is an **API client** for the OddsRelay odds API. Each run sends your request to `api.oddsrelay.io` with **your own OddsRelay API key** and saves the reply as rows in the run's dataset. It talks to no other site.
 
@@ -13,7 +13,7 @@ No key yet? Run it once without one: it lists **coverage**, which bookmakers car
 ## What does UK Bookmaker Odds API do?
 
 - Saves **bookmaker back prices beside exchange lay prices**, one row per price, from the board you pick.
-- Covers **football, horse racing, tennis and the other sports** on the OddsRelay boards, for UK and Irish bookmakers.
+- Covers **football, horse racing, tennis and the other sports** on the OddsRelay boards, for UK and Irish bookmakers, and the **Raw** board for 20 more regions through the **Region** input.
 - Filters by **sport, bookmaker and market**, so you take only what you need.
 - **Prices every call first, spending no tokens**, and stops before it would spend more tokens than your limit.
 - Runs on a **schedule**, from the **Apify API**, or through **Apify integrations** such as Make, Zapier and webhooks, like any Actor.
@@ -36,7 +36,7 @@ To see every bookmaker and sport key, run the Actor in **Coverage** mode.
 
 | Field | What it is |
 |---|---|
-| `product`, `region` | The board the row came from, and the region code of its prices (`uk`) |
+| `product`, `region` | The board the row came from, and the region code of its prices (such as `uk` or `us`) |
 | `eventId`, `eventName` | OddsRelay's event id, the same on every board and run, and the event name where the board gives one |
 | `sport`, `sportTitle` | Sport or competition key, and its name |
 | `commenceTime` | Scheduled start, ISO 8601 in UTC |
@@ -148,7 +148,7 @@ From the OddsRelay API. This Actor is a client for it: it sends your request to 
 
 ### Which bookmakers and regions are covered?
 
-UK and Irish bookmakers, with Betfair, Smarkets and Matchbook lay prices. Run Coverage for the current list of bookmaker and sport keys.
+UK and Irish bookmakers, with Betfair, Smarkets and Matchbook lay prices, on every board. The **Raw** board also reads 20 more regions: enter a code such as `us` in **Region**, or several international codes separated by commas (`us,global`) to read them as one board, priced as the regions added together. The matched boards are served for `uk` only, and `uk` is always asked on its own. Run Coverage with a region for its current list of bookmaker and sport keys.
 
 ### Why did my run stop early?
 

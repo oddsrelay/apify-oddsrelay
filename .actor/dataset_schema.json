@@ -14,7 +14,7 @@
       },
       "region": {
         "type": ["string", "null"],
-        "description": "Region code of the prices (uk).",
+        "description": "Region code of the prices, such as uk or us.",
         "example": "uk"
       },
       "eventId": {

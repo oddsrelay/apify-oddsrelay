@@ -162,6 +162,22 @@ test("coverage mode: no key sent, rows filtered by sport prefix and bookmaker", 
   assert.equal(summary.tokens, 0);
 });
 
+test("region: sent as given on the raw board (a comma list too) and on coverage; left out when empty", async () => {
+  const raw = await go({ apiKey: KEY, board: "raw", region: "us, global" }, [
+    { path: "/v2/odds/raw", quote: true, body: quote(18) },
+    { path: "/v2/odds/raw", body: { meta: { region: "global,us", next_cursor: null }, data: [] } },
+  ]);
+  assert.deepEqual(raw.calls.map((c) => c.url.searchParams.get("region")), ["us,global", "us,global"]);
+  const cov = await go({ mode: "coverage", region: "us" }, [{ path: "/v2/coverage", body: fixture("coverage") }]);
+  assert.equal(cov.calls[0].url.searchParams.get("region"), "us");
+  const none = await go({ mode: "coverage", region: " " }, [{ path: "/v2/coverage", body: fixture("coverage") }]);
+  assert.equal(none.calls[0].url.searchParams.has("region"), false);
+  const schema = JSON.parse(readFileSync(new URL("../.actor/input_schema.json", import.meta.url), "utf8"));
+  const ok = new RegExp(schema.properties.region.pattern);
+  for (const v of ["", "uk", "us,global", "us, global"]) assert.ok(ok.test(v), v);
+  for (const v of ["UK", "us;global", "us,"]) assert.ok(!ok.test(v), v);
+});
+
 test("odds with no key lists coverage instead and says why", async () => {
   const { rows, calls, summary } = await go({ mode: "odds", apiKey: "  " }, [{ path: "/v2/coverage", body: fixture("coverage") }]);
   assert.equal(calls.length, 1);

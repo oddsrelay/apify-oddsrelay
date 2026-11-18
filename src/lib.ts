@@ -12,6 +12,8 @@ export interface Input {
   apiKey?: string;
   mode?: "odds" | "coverage";
   board?: Board;
+  /** One region code, or on the raw board a comma list of international codes. Empty: the API's default. */
+  region?: string;
   sports?: string[];
   bookmakers?: string[];
   markets?: string[];
@@ -56,7 +58,7 @@ export async function run(input: Input, given: Deps): Promise<Summary> {
   if (!BOARDS.includes(board)) throw new UserError(`Unknown board "${board}". Pick one of: ${BOARDS.join(", ")}.`);
   const max = input.maxTokens ?? DEFAULT_MAX_TOKENS;
   const client = new OddsRelay({ apiKey, fetch: deps.fetch, sleep: deps.sleep });
-  const filters = { sports: list(input.sports), bookmakers: list(input.bookmakers), markets: list(input.markets) };
+  const filters = { region: region(input), sports: list(input.sports), bookmakers: list(input.bookmakers), markets: list(input.markets) };
   let tokens = 0;
   let rows = 0;
 
@@ -110,7 +112,7 @@ export async function run(input: Input, given: Deps): Promise<Summary> {
 async function coverage(input: Input, deps: Deps, prefix: string): Promise<Summary> {
   // Sent with no key on purpose: only the keyless view lists every product as bookmaker and sport rows.
   const client = new OddsRelay({ apiKey: "", fetch: deps.fetch, sleep: deps.sleep });
-  const found = coverageRows(fresh(await client.coverage()) as CoverageSummary, list(input.sports) ?? [], list(input.bookmakers) ?? []);
+  const found = coverageRows(fresh(await client.coverage({ region: region(input) })) as CoverageSummary, list(input.sports) ?? [], list(input.bookmakers) ?? []);
   await deps.push(found);
   const message = found.length
     ? `${prefix}Saved ${found.length} coverage rows. No tokens spent.`
@@ -122,6 +124,10 @@ function done(rows: number, tokens: number, stopped: string): string {
   return rows
     ? `Saved ${rows} price rows, spending ${tokens} tokens.${stopped}`
     : `No prices match these filters right now (${tokens} tokens spent).${stopped}`;
+}
+
+function region(input: Input): string | undefined {
+  return input.region?.replace(/\s+/g, "") || undefined;
 }
 
 function list(values: string[] | undefined): string[] | undefined {

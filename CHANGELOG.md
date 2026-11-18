@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- New **Region** input. Left empty, the run reads the UK & Ireland as before. The Raw board reads any region the
+  OddsRelay API serves, or several international codes as one board (`us,global`); Coverage lists the region
+  entered. The matched boards are served for `uk` only.
+- Texts no longer say "pre-match" or UK only: the API serves in-play prices and 20 more regions. No in-play input
+  yet: runs read events before the off, the API's default.
+
 ## 0.1
 
 - First version of the UK Bookmaker Odds API Actor.
